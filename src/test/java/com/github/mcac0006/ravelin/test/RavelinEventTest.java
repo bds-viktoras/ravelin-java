@@ -4,10 +4,12 @@
 package com.github.mcac0006.ravelin.test;
 
 import com.github.mcac0006.ravelin.base.Customer;
+import com.github.mcac0006.ravelin.base.Device;
 import com.github.mcac0006.ravelin.base.Location;
 import com.github.mcac0006.ravelin.base.paymentmethod.CreditCard;
 import com.github.mcac0006.ravelin.base.paymentmethod.PaymentMethod;
 import com.github.mcac0006.ravelin.customer.CustomerEvent;
+import com.github.mcac0006.ravelin.login.LoginEvent;
 import com.github.mcac0006.ravelin.order.*;
 import com.github.mcac0006.ravelin.paymentmethodevent.PaymentMethodEvent;
 import com.google.gson.Gson;
@@ -24,6 +26,26 @@ import java.util.List;
  * @author <a href="matthew.cachia@gmail.com">matthew.cachia</a>
  */
 public class RavelinEventTest {
+
+    @Test public void loginEventTest() throws Exception {
+
+        final LoginEvent generatedEvent;
+        {
+            Device device = new Device("2b6f0cc904d137be2e1730235f5664094b831186", "phone", "apple", "iPhone8,1", "iOS 8", "22.231.113.64", null, null, null, null, null);
+            generatedEvent = new LoginEvent(1429029750, "61283761287361", null, device, null);
+        }
+
+        final LoginEvent expectedEvent;
+        {
+            final List list = FileUtils.readLines(new File("target/test-classes/loginEvent.json"));
+            final String content = StringUtils.join(list, "");
+
+            Gson gson = new Gson();
+            expectedEvent = gson.fromJson(content, LoginEvent.class);
+        }
+
+        Assert.assertEquals(expectedEvent, generatedEvent);
+    }
 
     @Test public void testOrderEventTest() throws Exception {
 

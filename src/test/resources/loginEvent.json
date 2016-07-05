@@ -1,0 +1,13 @@
+{
+  "timestamp": 1429029750,
+  "customerId": "61283761287361",
+
+  "device": {
+    "deviceId": "2b6f0cc904d137be2e1730235f5664094b831186",
+    "type": "phone",
+    "manufacturer": "apple",
+    "model": "iPhone8,1",
+    "os": "iOS 8",
+    "ipAddress": "22.231.113.64"
+  }
+}
