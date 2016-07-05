@@ -108,7 +108,7 @@ public class Location {
         setLatitude(latitude);
         setLongitude(longitude);
         setGeohash(geohash);
-        this.custom = new HashMap<String, Object>();
+        setCustom(null);
     }
 
 
@@ -270,5 +270,85 @@ public class Location {
         this.custom = custom;
     }
 
+    public void addCustom(String key, Object val) {
 
+        if (getCustom() == null)
+            setCustom(new HashMap<String, Object>());
+
+        getCustom().put(key, val);
+    }
+
+    @Override public boolean equals(Object o) {
+
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Location location = (Location) o;
+
+        if (getStreet1() != null ? !getStreet1().equals(location.getStreet1()) : location.getStreet1() != null)
+            return false;
+        if (getStreet2() != null ? !getStreet2().equals(location.getStreet2()) : location.getStreet2() != null)
+            return false;
+        if (getNeighbourhood() != null ? !getNeighbourhood().equals(location.getNeighbourhood()) : location.getNeighbourhood() != null)
+            return false;
+        if (getZone() != null ? !getZone().equals(location.getZone()) : location.getZone() != null)
+            return false;
+        if (getCity() != null ? !getCity().equals(location.getCity()) : location.getCity() != null)
+            return false;
+        if (getRegion() != null ? !getRegion().equals(location.getRegion()) : location.getRegion() != null)
+            return false;
+        if (getCountry() != null ? !getCountry().equals(location.getCountry()) : location.getCountry() != null)
+            return false;
+        if (getPoBoxNumber() != null ? !getPoBoxNumber().equals(location.getPoBoxNumber()) : location.getPoBoxNumber() != null)
+            return false;
+        if (getPostalCode() != null ? !getPostalCode().equals(location.getPostalCode()) : location.getPostalCode() != null)
+            return false;
+        if (getLatitude() != null ? !getLatitude().equals(location.getLatitude()) : location.getLatitude() != null)
+            return false;
+        if (getLongitude() != null ? !getLongitude().equals(location.getLongitude()) : location.getLongitude() != null)
+            return false;
+        if (getGeohash() != null ? !getGeohash().equals(location.getGeohash()) : location.getGeohash() != null)
+            return false;
+        return getCustom() != null ? getCustom().equals(location.getCustom()) : location.getCustom() == null;
+
+    }
+
+    @Override public int hashCode() {
+
+        int result = getStreet1() != null ? getStreet1().hashCode() : 0;
+        result = 31 * result + (getStreet2() != null ? getStreet2().hashCode() : 0);
+        result = 31 * result + (getNeighbourhood() != null ? getNeighbourhood().hashCode() : 0);
+        result = 31 * result + (getZone() != null ? getZone().hashCode() : 0);
+        result = 31 * result + (getCity() != null ? getCity().hashCode() : 0);
+        result = 31 * result + (getRegion() != null ? getRegion().hashCode() : 0);
+        result = 31 * result + (getCountry() != null ? getCountry().hashCode() : 0);
+        result = 31 * result + (getPoBoxNumber() != null ? getPoBoxNumber().hashCode() : 0);
+        result = 31 * result + (getPostalCode() != null ? getPostalCode().hashCode() : 0);
+        result = 31 * result + (getLatitude() != null ? getLatitude().hashCode() : 0);
+        result = 31 * result + (getLongitude() != null ? getLongitude().hashCode() : 0);
+        result = 31 * result + (getGeohash() != null ? getGeohash().hashCode() : 0);
+        result = 31 * result + (getCustom() != null ? getCustom().hashCode() : 0);
+        return result;
+    }
+
+    @Override public String toString() {
+
+        return "Location{" +
+               "street1='" + street1 + '\'' +
+               ", street2='" + street2 + '\'' +
+               ", neighbourhood='" + neighbourhood + '\'' +
+               ", zone='" + zone + '\'' +
+               ", city='" + city + '\'' +
+               ", region='" + region + '\'' +
+               ", country='" + country + '\'' +
+               ", poBoxNumber='" + poBoxNumber + '\'' +
+               ", postalCode='" + postalCode + '\'' +
+               ", latitude=" + latitude +
+               ", longitude=" + longitude +
+               ", geohash='" + geohash + '\'' +
+               ", custom=" + custom +
+               '}';
+    }
 }

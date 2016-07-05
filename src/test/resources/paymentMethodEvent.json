@@ -1,0 +1,22 @@
+{
+  "timestamp": 1429029735,
+  "customerId": "61283761287361",
+
+  "paymentMethod": {
+    "paymentMethodId": "783917",
+    "instrumentId": "card_16nWlGHD2LFseSsHaUp9kIW2",
+    "registrationTime": 1429029735,
+    "nickName": "MasterCard **** 4242",
+    "methodType": "card",
+    "cardBin": "123456",
+    "cardLastFour": "4242",
+    "cardType": "mastercard",
+    "expiryMonth": 6,
+    "expiryYear": 2019,
+    "successfulRegistration": true,
+    "prepaidCard": false,
+    "countryIssued": "GBR",
+    "active": true,
+    "banned": false
+  }
+}

@@ -158,7 +158,7 @@ public class Customer {
         setLocation(location);
         setCountry(country);
         setMarket(market);
-        setCustom(new HashMap<String, Object>());
+        setCustom(null);
     }
 
 
@@ -231,7 +231,8 @@ public class Customer {
     public void setDateOfBirth(String dateOfBirth) {
 
         try {
-            dateformat.parse(dateOfBirth);
+            if (dateOfBirth != null)
+                dateformat.parse(dateOfBirth);
         } catch (ParseException e) {
             throw new IllegalArgumentException(format("Date of birth [%s] is not in the expected yyyy-MM-dd format.", dateOfBirth));
         }
@@ -322,7 +323,7 @@ public class Customer {
 
     public void setTelephoneCountry(String telephoneCountry) {
 
-        if (!ISO_3166_PATTERN.matcher(telephoneCountry).matches())
+        if (telephoneCountry != null && !ISO_3166_PATTERN.matcher(telephoneCountry).matches())
             throw new IllegalArgumentException(format("Telephone Country [%s] is not in the expected ISO-3166 format.", telephoneCountry));
 
         this.telephoneCountry = telephoneCountry;
@@ -349,7 +350,7 @@ public class Customer {
 
     public void setCountry(String country) {
 
-        if (!ISO_3166_PATTERN.matcher(country).matches())
+        if (country != null && !ISO_3166_PATTERN.matcher(country).matches())
             throw new IllegalArgumentException(format("Country [%s] is not in the expected ISO-3166 format.", country));
 
         this.country = country;
@@ -382,5 +383,101 @@ public class Customer {
         this.custom = custom;
     }
 
+    public void addCustom(String key, Object val) {
 
+        if (getCustom() == null)
+            setCustom(new HashMap<String, Object>());
+
+        getCustom().put(key, val);
+    }
+
+    @Override public boolean equals(Object o) {
+
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Customer customer = (Customer) o;
+
+        if (getCustomerId() != null ? !getCustomerId().equals(customer.getCustomerId()) : customer.getCustomerId() != null)
+            return false;
+        if (getRegistrationTime() != null ? !getRegistrationTime().equals(customer.getRegistrationTime()) : customer.getRegistrationTime() != null)
+            return false;
+        if (getName() != null ? !getName().equals(customer.getName()) : customer.getName() != null)
+            return false;
+        if (getGivenName() != null ? !getGivenName().equals(customer.getGivenName()) : customer.getGivenName() != null)
+            return false;
+        if (getFamilyName() != null ? !getFamilyName().equals(customer.getFamilyName()) : customer.getFamilyName() != null)
+            return false;
+        if (getDateOfBirth() != null ? !getDateOfBirth().equals(customer.getDateOfBirth()) : customer.getDateOfBirth() != null)
+            return false;
+        if (getGender() != null ? !getGender().equals(customer.getGender()) : customer.getGender() != null)
+            return false;
+        if (getEmail() != null ? !getEmail().equals(customer.getEmail()) : customer.getEmail() != null)
+            return false;
+        if (getEmailVerifiedTime() != null ? !getEmailVerifiedTime().equals(customer.getEmailVerifiedTime()) : customer.getEmailVerifiedTime() != null)
+            return false;
+        if (getUsername() != null ? !getUsername().equals(customer.getUsername()) : customer.getUsername() != null)
+            return false;
+        if (getTelephone() != null ? !getTelephone().equals(customer.getTelephone()) : customer.getTelephone() != null)
+            return false;
+        if (getTelephoneVerifiedTime() != null ? !getTelephoneVerifiedTime().equals(customer.getTelephoneVerifiedTime()) : customer.getTelephoneVerifiedTime() != null)
+            return false;
+        if (getTelephoneCountry() != null ? !getTelephoneCountry().equals(customer.getTelephoneCountry()) : customer.getTelephoneCountry() != null)
+            return false;
+        if (getLocation() != null ? !getLocation().equals(customer.getLocation()) : customer.getLocation() != null)
+            return false;
+        if (getCountry() != null ? !getCountry().equals(customer.getCountry()) : customer.getCountry() != null)
+            return false;
+        if (getMarket() != null ? !getMarket().equals(customer.getMarket()) : customer.getMarket() != null)
+            return false;
+        return getCustom() != null ? getCustom().equals(customer.getCustom()) : customer.getCustom() == null;
+
+    }
+
+    @Override public int hashCode() {
+
+        int result = getCustomerId() != null ? getCustomerId().hashCode() : 0;
+        result = 31 * result + (getRegistrationTime() != null ? getRegistrationTime().hashCode() : 0);
+        result = 31 * result + (getName() != null ? getName().hashCode() : 0);
+        result = 31 * result + (getGivenName() != null ? getGivenName().hashCode() : 0);
+        result = 31 * result + (getFamilyName() != null ? getFamilyName().hashCode() : 0);
+        result = 31 * result + (getDateOfBirth() != null ? getDateOfBirth().hashCode() : 0);
+        result = 31 * result + (getGender() != null ? getGender().hashCode() : 0);
+        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+        result = 31 * result + (getEmailVerifiedTime() != null ? getEmailVerifiedTime().hashCode() : 0);
+        result = 31 * result + (getUsername() != null ? getUsername().hashCode() : 0);
+        result = 31 * result + (getTelephone() != null ? getTelephone().hashCode() : 0);
+        result = 31 * result + (getTelephoneVerifiedTime() != null ? getTelephoneVerifiedTime().hashCode() : 0);
+        result = 31 * result + (getTelephoneCountry() != null ? getTelephoneCountry().hashCode() : 0);
+        result = 31 * result + (getLocation() != null ? getLocation().hashCode() : 0);
+        result = 31 * result + (getCountry() != null ? getCountry().hashCode() : 0);
+        result = 31 * result + (getMarket() != null ? getMarket().hashCode() : 0);
+        result = 31 * result + (getCustom() != null ? getCustom().hashCode() : 0);
+        return result;
+    }
+
+    @Override public String toString() {
+
+        return "Customer{" +
+               "customerId='" + customerId + '\'' +
+               ", registrationTime=" + registrationTime +
+               ", name='" + name + '\'' +
+               ", givenName='" + givenName + '\'' +
+               ", familyName='" + familyName + '\'' +
+               ", dateOfBirth='" + dateOfBirth + '\'' +
+               ", gender='" + gender + '\'' +
+               ", email='" + email + '\'' +
+               ", emailVerifiedTime=" + emailVerifiedTime +
+               ", username='" + username + '\'' +
+               ", telephone='" + telephone + '\'' +
+               ", telephoneVerifiedTime=" + telephoneVerifiedTime +
+               ", telephoneCountry='" + telephoneCountry + '\'' +
+               ", location=" + location +
+               ", country='" + country + '\'' +
+               ", market='" + market + '\'' +
+               ", custom=" + custom +
+               '}';
+    }
 }

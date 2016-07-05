@@ -7,6 +7,10 @@
 	<name>Ravelin Java API Library</name>
 
 
+
+
+
+
 	<url>https://github.com/mcac0006/sift-java</url>
 
 	<developers>
@@ -24,6 +28,23 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>2.7</version>
+		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+        </dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>1.0</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 

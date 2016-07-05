@@ -1,0 +1,26 @@
+{
+  "timestamp": 1429029735,
+
+  "customer": {
+    "customerId": "61283761287361",
+    "registrationTime": 1429029731,
+    "familyName": "Twain",
+    "givenName": "Mark",
+    "username": "mtwain",
+    "email": "marktwain@gmail.com",
+    "market": "lon",
+    "location": {
+      "street1": "James St",
+      "city": "Darwen",
+      "region": "Blackburn with Darwen",
+      "postalCode": "BB3 1AS",
+      "country": "GBR",
+      "latitude": 53.697471,
+      "longitude": -2.470891
+    },
+    "custom": {
+      "newsletter": false,
+      "invitedBy": "7198737117"
+    }
+  }
+}

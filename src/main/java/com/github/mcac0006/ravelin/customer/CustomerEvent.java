@@ -53,4 +53,41 @@ public class CustomerEvent extends Event {
 
         this.deviceId = deviceId;
     }
+
+    @Override public boolean equals(Object o) {
+
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+        if (!super.equals(o))
+            return false;
+
+        CustomerEvent that = (CustomerEvent) o;
+
+        if (customer != null ? !customer.equals(that.customer) : that.customer != null)
+            return false;
+        if (device != null ? !device.equals(that.device) : that.device != null)
+            return false;
+        return getDeviceId() != null ? getDeviceId().equals(that.getDeviceId()) : that.getDeviceId() == null;
+
+    }
+
+    @Override public int hashCode() {
+
+        int result = super.hashCode();
+        result = 31 * result + (customer != null ? customer.hashCode() : 0);
+        result = 31 * result + (device != null ? device.hashCode() : 0);
+        result = 31 * result + (getDeviceId() != null ? getDeviceId().hashCode() : 0);
+        return result;
+    }
+
+    @Override public String toString() {
+
+        return "CustomerEvent{" +
+               "customer=" + customer +
+               ", device=" + device +
+               ", deviceId='" + deviceId + '\'' +
+               '}';
+    }
 }

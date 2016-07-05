@@ -31,7 +31,7 @@ public class CreditCard extends PaymentMethod {
 
     private Integer expiryYear;
 
-    private Boolean successflRegistration;
+    private Boolean successfulRegistration;
 
     private Boolean prepaidCard;
 
@@ -51,7 +51,7 @@ public class CreditCard extends PaymentMethod {
                       String cardType,
                       Integer expiryMonth,
                       Integer expiryYear,
-                      Boolean successflRegistration,
+                      Boolean successfulRegistration,
                       Boolean prepaidCard,
                       String issuer,
                       String countryIssued) {
@@ -63,7 +63,7 @@ public class CreditCard extends PaymentMethod {
         setCardType(cardType);
         setExpiryMonth(expiryMonth);
         setExpiryYear(expiryYear);
-        setSuccessflRegistration(successflRegistration);
+        setSuccessfulRegistration(successfulRegistration);
         setPrepaidCard(prepaidCard);
         setIssuer(issuer);
         setCountryIssued(countryIssued);
@@ -154,15 +154,15 @@ public class CreditCard extends PaymentMethod {
     }
 
 
-    public Boolean getSuccessflRegistration() {
+    public Boolean getSuccessfulRegistration() {
 
-        return successflRegistration;
+        return successfulRegistration;
     }
 
 
-    public void setSuccessflRegistration(Boolean successflRegistration) {
+    public void setSuccessfulRegistration(Boolean successfulRegistration) {
 
-        this.successflRegistration = successflRegistration;
+        this.successfulRegistration = successfulRegistration;
     }
 
 
@@ -209,4 +209,69 @@ public class CreditCard extends PaymentMethod {
         return "card";
     }
 
+    @Override public boolean equals(Object o) {
+
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        CreditCard that = (CreditCard) o;
+
+        if (getInstrumentId() != null ? !getInstrumentId().equals(that.getInstrumentId()) : that.getInstrumentId() != null)
+            return false;
+        if (getNameOnCard() != null ? !getNameOnCard().equals(that.getNameOnCard()) : that.getNameOnCard() != null)
+            return false;
+        if (getCardBin() != null ? !getCardBin().equals(that.getCardBin()) : that.getCardBin() != null)
+            return false;
+        if (getCardLastFour() != null ? !getCardLastFour().equals(that.getCardLastFour()) : that.getCardLastFour() != null)
+            return false;
+        if (getCardType() != null ? !getCardType().equals(that.getCardType()) : that.getCardType() != null)
+            return false;
+        if (getExpiryMonth() != null ? !getExpiryMonth().equals(that.getExpiryMonth()) : that.getExpiryMonth() != null)
+            return false;
+        if (getExpiryYear() != null ? !getExpiryYear().equals(that.getExpiryYear()) : that.getExpiryYear() != null)
+            return false;
+        if (getSuccessfulRegistration() != null ? !getSuccessfulRegistration().equals(that.getSuccessfulRegistration()) : that.getSuccessfulRegistration() != null)
+            return false;
+        if (getPrepaidCard() != null ? !getPrepaidCard().equals(that.getPrepaidCard()) : that.getPrepaidCard() != null)
+            return false;
+        if (getIssuer() != null ? !getIssuer().equals(that.getIssuer()) : that.getIssuer() != null)
+            return false;
+        return getCountryIssued() != null ? getCountryIssued().equals(that.getCountryIssued()) : that.getCountryIssued() == null;
+
+    }
+
+    @Override public int hashCode() {
+
+        int result = getInstrumentId() != null ? getInstrumentId().hashCode() : 0;
+        result = 31 * result + (getNameOnCard() != null ? getNameOnCard().hashCode() : 0);
+        result = 31 * result + (getCardBin() != null ? getCardBin().hashCode() : 0);
+        result = 31 * result + (getCardLastFour() != null ? getCardLastFour().hashCode() : 0);
+        result = 31 * result + (getCardType() != null ? getCardType().hashCode() : 0);
+        result = 31 * result + (getExpiryMonth() != null ? getExpiryMonth().hashCode() : 0);
+        result = 31 * result + (getExpiryYear() != null ? getExpiryYear().hashCode() : 0);
+        result = 31 * result + (getSuccessfulRegistration() != null ? getSuccessfulRegistration().hashCode() : 0);
+        result = 31 * result + (getPrepaidCard() != null ? getPrepaidCard().hashCode() : 0);
+        result = 31 * result + (getIssuer() != null ? getIssuer().hashCode() : 0);
+        result = 31 * result + (getCountryIssued() != null ? getCountryIssued().hashCode() : 0);
+        return result;
+    }
+
+    @Override public String toString() {
+
+        return "CreditCard{" +
+               "instrumentId='" + instrumentId + '\'' +
+               ", nameOnCard='" + nameOnCard + '\'' +
+               ", cardBin='" + cardBin + '\'' +
+               ", cardLastFour='" + cardLastFour + '\'' +
+               ", cardType='" + cardType + '\'' +
+               ", expiryMonth=" + expiryMonth +
+               ", expiryYear=" + expiryYear +
+               ", successfulRegistration=" + successfulRegistration +
+               ", prepaidCard=" + prepaidCard +
+               ", issuer='" + issuer + '\'' +
+               ", countryIssued='" + countryIssued + '\'' +
+               '}';
+    }
 }
