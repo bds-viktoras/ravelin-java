@@ -1,0 +1,46 @@
+{
+  "timestamp": 1429029735,
+
+  "customerId": "61283761287361",
+
+  "order": {
+    "orderId": "hXyUc5ef2zhOrdqmRiC",
+    "price": 4675,
+    "currency": "GBP",
+    "market": "lon",
+    "items": [
+      {
+        "sku": "3726-8",
+        "name": "Women's Arch Sweater M 55",
+        "price": 1990,
+        "currency": "GBP",
+        "quantity": 2
+      },
+      {
+        "sku": "3731-4",
+        "name": "Women's Yellow Tee M 54",
+        "price": 695,
+        "currency": "GBP",
+        "quantity": 1
+      }
+    ],
+    "from": {
+      "street1": "19 Gosport Walk",
+      "postalCode": "N17 9QD",
+      "region": "London",
+      "country": "GBR"
+    },
+    "to": {
+      "street1": "73 Braganza St",
+      "postalCode": "SE17 3RD",
+      "region": "London",
+      "country": "GBR"
+    },
+    "creationTime": 1429029730,
+    "executionTime": 1429029732,
+    "status": {
+      "stage": "pending",
+      "actor": "buyer"
+    }
+  }
+}

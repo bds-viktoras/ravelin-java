@@ -8,6 +8,7 @@ import com.github.mcac0006.ravelin.base.Location;
 import com.github.mcac0006.ravelin.base.paymentmethod.CreditCard;
 import com.github.mcac0006.ravelin.base.paymentmethod.PaymentMethod;
 import com.github.mcac0006.ravelin.customer.CustomerEvent;
+import com.github.mcac0006.ravelin.order.*;
 import com.github.mcac0006.ravelin.paymentmethodevent.PaymentMethodEvent;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,7 +23,36 @@ import java.util.List;
 /**
  * @author <a href="matthew.cachia@gmail.com">matthew.cachia</a>
  */
-public class CustomerEventTest {
+public class RavelinEventTest {
+
+    @Test public void testOrderEventTest() throws Exception {
+
+        final OrderEvent generatedEvent;
+        {
+            final Item item1 = new Item("3726-8", "Women's Arch Sweater M 55", 1990, "GBP", null, null, null, 2);
+            final Item item2 = new Item("3731-4", "Women's Yellow Tee M 54", 695, "GBP", null, null, null, 1);
+
+            Location from = new Location("19 Gosport Walk", null, null, null, null, "London", "GBR", null, "N17 9QD", null, null, null);
+            Location to = new Location("73 Braganza St", null, null, null, null, "London", "GBR", null, "SE17 3RD", null, null, null);
+
+            Status status = new Status(Stage.pending, null, "buyer");
+
+            final Order order = new Order("hXyUc5ef2zhOrdqmRiC", null, 4675, "GBP", null, from, to, null, "lon", 1429029730, 1429029732, new Item[] {item1, item2}, status);
+
+            generatedEvent = new OrderEvent(1429029735, "61283761287361", null, order, null, null);
+        }
+
+        final OrderEvent expectedEvent;
+        {
+            final List list = FileUtils.readLines(new File("target/test-classes/orderEvent.json"));
+            final String content = StringUtils.join(list, "");
+
+            Gson gson = new GsonBuilder().registerTypeAdapter(PaymentMethod.class, new PaymentMethodDeserializer()).create();
+            expectedEvent = gson.fromJson(content, OrderEvent.class);
+        }
+
+        Assert.assertEquals(expectedEvent, generatedEvent);
+    }
 
     @Test public void testPaymentMethodEvent() throws Exception {
 
