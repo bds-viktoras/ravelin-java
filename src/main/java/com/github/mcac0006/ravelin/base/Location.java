@@ -18,8 +18,6 @@ import java.util.regex.Pattern;
  */
 public class Location {
 
-    private transient Pattern ISO_3166_PATTERN = Pattern.compile("^[A-Z]{2,3}$");
-
     /**
      * First line of the street address.
      */
@@ -191,9 +189,6 @@ public class Location {
 
 
     public void setCountry(String country) {
-
-        if (!ISO_3166_PATTERN.matcher(country).matches())
-            throw new IllegalArgumentException(format("Country [%s] is not in the expected ISO-3166 format.", country));
 
         this.country = country;
     }

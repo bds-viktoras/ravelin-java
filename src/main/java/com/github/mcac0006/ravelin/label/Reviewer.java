@@ -15,11 +15,6 @@ import java.util.regex.Pattern;
  */
 public class Reviewer {
 
-    /**
-     * Used for validation purposes only.
-     */
-    private transient Pattern EMAIL_PATTERN = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
     private String name;
 
     private String email;
@@ -51,9 +46,36 @@ public class Reviewer {
 
     public void setEmail(String email) {
 
-        if (!EMAIL_PATTERN.matcher(email).matches())
-            throw new IllegalArgumentException(format("Email [%s] is not a valid email.", email));
-
         this.email = email;
+    }
+
+    @Override public String toString() {
+
+        return "Reviewer{" +
+               "name='" + name + '\'' +
+               ", email='" + email + '\'' +
+               '}';
+    }
+
+    @Override public boolean equals(Object o) {
+
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        Reviewer reviewer = (Reviewer) o;
+
+        if (getName() != null ? !getName().equals(reviewer.getName()) : reviewer.getName() != null)
+            return false;
+        return getEmail() != null ? getEmail().equals(reviewer.getEmail()) : reviewer.getEmail() == null;
+
+    }
+
+    @Override public int hashCode() {
+
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+        return result;
     }
 }

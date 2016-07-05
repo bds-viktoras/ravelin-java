@@ -12,11 +12,6 @@ import java.util.regex.Pattern;
  */
 public class CreditCard extends PaymentMethod {
 
-    /**
-     * Used for validation purposes only.
-     */
-    private transient Pattern ISO_3166_PATTERN = Pattern.compile("^[A-Z]{2,3}$");
-
     private String instrumentId;
 
     private String nameOnCard;
@@ -197,9 +192,6 @@ public class CreditCard extends PaymentMethod {
 
 
     public void setCountryIssued(String countryIssued) {
-
-        if (!ISO_3166_PATTERN.matcher(countryIssued).matches())
-            throw new IllegalArgumentException(format("Country [%s] is not in the expected ISO-3166 format.", countryIssued));
 
         this.countryIssued = countryIssued;
     }

@@ -19,27 +19,6 @@ import java.util.regex.Pattern;
 public class Customer {
 
     /**
-     * Used for validation purposes only. DO NOT SET TO STATIC otherwise thread safety would be
-     * jeopardized!
-     */
-    private transient SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd");
-
-    /**
-     * Used for validation purposes only.
-     */
-    private transient Pattern ISO_3166_PATTERN = Pattern.compile("^[A-Z]{2,3}$");
-
-    /**
-     * Used for validation purposes only.
-     */
-    private transient Pattern EMAIL_PATTERN = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
-    /**
-     * Used for validation purposes only.
-     */
-    private transient Pattern MARKET_PATTERN = Pattern.compile("^[a-z0-9]*$");
-
-    /**
      * The unique identifier of this customer in your system.
      */
     private String customerId;
@@ -152,7 +131,7 @@ public class Customer {
         setEmail(email);
         setEmailVerifiedTime(emailVerifiedTime);
         setUsername(username);
-        setTelephone(telephoneCountry);
+        setTelephone(telephone);
         setTelephoneVerifiedTime(telephoneVerifiedTime);
         setTelephoneCountry(telephoneCountry);
         setLocation(location);
@@ -230,12 +209,6 @@ public class Customer {
 
     public void setDateOfBirth(String dateOfBirth) {
 
-        try {
-            if (dateOfBirth != null)
-                dateformat.parse(dateOfBirth);
-        } catch (ParseException e) {
-            throw new IllegalArgumentException(format("Date of birth [%s] is not in the expected yyyy-MM-dd format.", dateOfBirth));
-        }
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -259,9 +232,6 @@ public class Customer {
 
 
     public void setEmail(String email) {
-
-        if (!EMAIL_PATTERN.matcher(email).matches())
-            throw new IllegalArgumentException(format("Email [%s] is not a valid email.", email));
 
         this.email = email;
     }
@@ -323,9 +293,6 @@ public class Customer {
 
     public void setTelephoneCountry(String telephoneCountry) {
 
-        if (telephoneCountry != null && !ISO_3166_PATTERN.matcher(telephoneCountry).matches())
-            throw new IllegalArgumentException(format("Telephone Country [%s] is not in the expected ISO-3166 format.", telephoneCountry));
-
         this.telephoneCountry = telephoneCountry;
     }
 
@@ -350,9 +317,6 @@ public class Customer {
 
     public void setCountry(String country) {
 
-        if (country != null && !ISO_3166_PATTERN.matcher(country).matches())
-            throw new IllegalArgumentException(format("Country [%s] is not in the expected ISO-3166 format.", country));
-
         this.country = country;
     }
 
@@ -364,9 +328,6 @@ public class Customer {
 
 
     public void setMarket(String market) {
-
-        if (!MARKET_PATTERN.matcher(market).matches())
-            throw new IllegalArgumentException(format("Market [%s] is not in the expected format.", market));
 
         this.market = market;
     }

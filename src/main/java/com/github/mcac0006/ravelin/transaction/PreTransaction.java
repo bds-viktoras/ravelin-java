@@ -15,16 +15,6 @@ import java.util.regex.Pattern;
 public class PreTransaction {
 
     /**
-     * Used for validation purposes only.
-     */
-    private transient Pattern ISO_4217_PATTERN = Pattern.compile("^[A-Z]{3}$");
-
-    /**
-     * Used for validation purposes only.
-     */
-    private transient Pattern EMAIL_PATTERN = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
-    /**
      * A unique identifier for the transaction.
      */
     private String transactionId;
@@ -111,9 +101,6 @@ public class PreTransaction {
 
     public void setEmail(String email) {
 
-        if (!EMAIL_PATTERN.matcher(email).matches())
-            throw new IllegalArgumentException(format("Email [%s] is not a valid email.", email));
-
         this.email = email;
     }
 
@@ -125,9 +112,6 @@ public class PreTransaction {
 
 
     public void setCurrency(String currency) {
-
-        if (!ISO_4217_PATTERN.matcher(currency).matches())
-            throw new IllegalArgumentException(format("Currency [%s] is not a valid ISO-4217 currency.", currency));
 
         this.currency = currency;
     }

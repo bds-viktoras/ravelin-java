@@ -15,19 +15,6 @@ import java.util.regex.Pattern;
  */
 public class Device {
 
-    /**
-     * Used for validation purposes only.
-     */
-    private transient static Pattern SCREEN_RESOLUTION_PATTERN = Pattern.compile("^[0-9]+x[0-9]+$");
-
-    /**
-     * Used for validation purposes only.
-     */
-    private transient static Pattern IP_PATTERN = Pattern.compile("^([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\"
-                                                        + ".([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\"
-                                                        + ".([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\"
-                                                        + ".([01]?\\d\\d?|2[0-4]\\d|25[0-5])$");
-
     private String deviceId;
 
     private String type;
@@ -144,9 +131,6 @@ public class Device {
 
     public void setIpAddress(String ipAddress) {
 
-        if (!IP_PATTERN.matcher(ipAddress).matches())
-            throw new IllegalArgumentException(format("IP Address [%s] is not in the expected format.", ipAddress));
-
         this.ipAddress = ipAddress;
     }
 
@@ -206,9 +190,6 @@ public class Device {
 
 
     public void setScreenResolution(String screenResolution) {
-
-        if (!SCREEN_RESOLUTION_PATTERN.matcher(screenResolution).matches())
-            throw new IllegalArgumentException(format("Screen resolution [%s] is not in the expected format.", screenResolution));
 
         this.screenResolution = screenResolution;
     }

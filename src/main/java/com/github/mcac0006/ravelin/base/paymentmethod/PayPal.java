@@ -12,11 +12,6 @@ import java.util.regex.Pattern;
  */
 public class PayPal extends PaymentMethod {
 
-    /**
-     * Used for validation purposes only.
-     */
-    private transient Pattern EMAIL_PATTERN = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
-
     private String email;
 
     public PayPal(String paymentMethodId, String nickName, Boolean banned, Boolean active, Integer registrationTime, Pattern eMAIL_PATTERN, String email) {
@@ -33,9 +28,6 @@ public class PayPal extends PaymentMethod {
 
     public void setEmail(String email) {
 
-        if (!EMAIL_PATTERN.matcher(email).matches())
-            throw new IllegalArgumentException(format("Email [%s] is not a valid email.", email));
-
         this.email = email;
     }
 
@@ -45,4 +37,28 @@ public class PayPal extends PaymentMethod {
         return "paypal";
     }
 
+    @Override public String toString() {
+
+        return "PayPal{" +
+               "email='" + email + '\'' +
+               '}';
+    }
+
+    @Override public boolean equals(Object o) {
+
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        PayPal payPal = (PayPal) o;
+
+        return getEmail() != null ? getEmail().equals(payPal.getEmail()) : payPal.getEmail() == null;
+
+    }
+
+    @Override public int hashCode() {
+
+        return getEmail() != null ? getEmail().hashCode() : 0;
+    }
 }

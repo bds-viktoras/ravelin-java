@@ -1,5 +1,6 @@
 package com.github.mcac0006.ravelin.transaction;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -9,16 +10,6 @@ import java.util.regex.Pattern;
  *
  */
 public class Transaction {
-
-    /**
-     * Used for validation purposes only.
-     */
-    private transient Pattern ISO_4217_PATTERN = Pattern.compile("^[A-Z]{3}$");
-
-    /**
-     * Used for validation purposes only.
-     */
-    private transient Pattern EMAIL_PATTERN = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     /**
      * A unique identifier for the transaction.
@@ -95,6 +86,37 @@ public class Transaction {
 
     private Map<String, Object> custom;
 
+    public Transaction(String transactionId,
+                       Boolean success,
+                       String email,
+                       String currency,
+                       Integer debit,
+                       Integer credit,
+                       String authCode,
+                       String declineCode,
+                       String gateway,
+                       String gatewayReference,
+                       AVSResult avsResultCode,
+                       VerificationResult cvvResultCode,
+                       TransactionType type,
+                       Integer time) {
+
+        this.transactionId = transactionId;
+        this.success = success;
+        this.email = email;
+        this.currency = currency;
+        this.debit = debit;
+        this.credit = credit;
+        this.authCode = authCode;
+        this.declineCode = declineCode;
+        this.gateway = gateway;
+        this.gatewayReference = gatewayReference;
+        this.avsResultCode = avsResultCode;
+        this.cvvResultCode = cvvResultCode;
+        this.type = type;
+        this.time = time;
+        this.custom = null;
+    }
 
     public String getTransactionId() {
 
@@ -273,5 +295,13 @@ public class Transaction {
     public void setCustom(Map<String, Object> custom) {
 
         this.custom = custom;
+    }
+
+    public void addToCustom(String key, Object val) {
+
+        if (getCustom() == null)
+            setCustom(new HashMap<String, Object>());
+
+        getCustom().put(key, val);
     }
 }
