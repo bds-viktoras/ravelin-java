@@ -123,5 +123,49 @@ public class RavelinResponse {
         this.comment = comment;
     }
 
+    @Override public String toString() {
 
+        return "RavelinResponse{" +
+               "customerId='" + customerId + '\'' +
+               ", action=" + action +
+               ", score=" + score +
+               ", source='" + source + '\'' +
+               ", scoreId='" + scoreId + '\'' +
+               ", comment='" + comment + '\'' +
+               '}';
+    }
+
+    @Override public boolean equals(Object o) {
+
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
+
+        RavelinResponse that = (RavelinResponse) o;
+
+        if (getCustomerId() != null ? !getCustomerId().equals(that.getCustomerId()) : that.getCustomerId() != null)
+            return false;
+        if (getAction() != that.getAction())
+            return false;
+        if (getScore() != null ? !getScore().equals(that.getScore()) : that.getScore() != null)
+            return false;
+        if (getSource() != null ? !getSource().equals(that.getSource()) : that.getSource() != null)
+            return false;
+        if (getScoreId() != null ? !getScoreId().equals(that.getScoreId()) : that.getScoreId() != null)
+            return false;
+        return getComment() != null ? getComment().equals(that.getComment()) : that.getComment() == null;
+
+    }
+
+    @Override public int hashCode() {
+
+        int result = getCustomerId() != null ? getCustomerId().hashCode() : 0;
+        result = 31 * result + (getAction() != null ? getAction().hashCode() : 0);
+        result = 31 * result + (getScore() != null ? getScore().hashCode() : 0);
+        result = 31 * result + (getSource() != null ? getSource().hashCode() : 0);
+        result = 31 * result + (getScoreId() != null ? getScoreId().hashCode() : 0);
+        result = 31 * result + (getComment() != null ? getComment().hashCode() : 0);
+        return result;
+    }
 }
