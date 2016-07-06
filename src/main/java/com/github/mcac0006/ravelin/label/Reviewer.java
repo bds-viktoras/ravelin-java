@@ -15,8 +15,14 @@ import java.util.regex.Pattern;
  */
 public class Reviewer {
 
+    /**
+     * The name of the person doing the review.
+     */
     private String name;
 
+    /**
+     * The email of the person doing the review.
+     */
     private String email;
 
     public Reviewer(String name, String email) {

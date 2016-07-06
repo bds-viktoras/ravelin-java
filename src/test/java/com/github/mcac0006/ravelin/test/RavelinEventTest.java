@@ -9,6 +9,9 @@ import com.github.mcac0006.ravelin.base.Location;
 import com.github.mcac0006.ravelin.base.paymentmethod.CreditCard;
 import com.github.mcac0006.ravelin.base.paymentmethod.PaymentMethod;
 import com.github.mcac0006.ravelin.customer.CustomerEvent;
+import com.github.mcac0006.ravelin.label.Label;
+import com.github.mcac0006.ravelin.label.LabelCustomerEvent;
+import com.github.mcac0006.ravelin.label.Reviewer;
 import com.github.mcac0006.ravelin.login.LoginEvent;
 import com.github.mcac0006.ravelin.order.*;
 import com.github.mcac0006.ravelin.paymentmethodevent.PaymentMethodEvent;
@@ -26,6 +29,27 @@ import java.util.List;
  * @author <a href="matthew.cachia@gmail.com">matthew.cachia</a>
  */
 public class RavelinEventTest {
+
+    @Test
+    public void labelCustomerEventTest() throws Exception {
+
+        final LabelCustomerEvent generatedEvent;
+        {
+            Reviewer reviewer = new Reviewer("Bilbo Baggins", "bilbo.b@shiremail.com");
+            generatedEvent = new LabelCustomerEvent("customer1", Label.GENUINE, "This customer called up and we have determined he is not a fraudster", reviewer);
+        }
+
+        final LabelCustomerEvent expectedEvent;
+        {
+            final List list = FileUtils.readLines(new File("target/test-classes/labelCustomerEvent.json"));
+            final String content = StringUtils.join(list, "");
+
+            Gson gson = new Gson();
+            expectedEvent = gson.fromJson(content, LabelCustomerEvent.class);
+        }
+
+        Assert.assertEquals(expectedEvent, generatedEvent);
+    }
 
     @Test public void loginEventTest() throws Exception {
 

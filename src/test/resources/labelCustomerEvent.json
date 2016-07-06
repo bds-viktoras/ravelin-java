@@ -1,0 +1,9 @@
+{
+  "customerId": "customer1",
+  "label": "GENUINE",
+  "comment": "This customer called up and we have determined he is not a fraudster",
+  "reviewer":{
+    "name": "Bilbo Baggins",
+    "email": "bilbo.b@shiremail.com"
+  }
+}
