@@ -1,0 +1,25 @@
+{
+  "timestamp": 1429029735,
+  "customerId": "61283761287361",
+  "paymentMethodId": "783917",
+  "orderId": "n1QSYK0ceGNZqU28ien3",
+
+  "transaction": {
+    "transactionId": "f61f8594e06459fa046707c36159bb35",
+    "email": "james.tate@gmail.com",
+    "debit": 4675,
+    "credit": 0,
+    "currency": "GBP",
+
+    "success": true,
+    "authCode": "1000",
+    "gateway": "stripe",
+    "gatewayReference": "tr_16oaY72eZvKYlo2CE5ZDq9Vh",
+    "avsResultCode": {
+      "street": "A",
+      "postalCode": "M"
+    },
+    "cvvResultCode": "M",
+    "type": "auth_capture"
+  }
+}

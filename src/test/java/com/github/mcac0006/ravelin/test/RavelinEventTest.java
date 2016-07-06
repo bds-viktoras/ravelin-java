@@ -15,9 +15,7 @@ import com.github.mcac0006.ravelin.label.Reviewer;
 import com.github.mcac0006.ravelin.login.LoginEvent;
 import com.github.mcac0006.ravelin.order.*;
 import com.github.mcac0006.ravelin.paymentmethodevent.PaymentMethodEvent;
-import com.github.mcac0006.ravelin.transaction.PreTransaction;
-import com.github.mcac0006.ravelin.transaction.PreTransactionEvent;
-import com.github.mcac0006.ravelin.transaction.TransactionType;
+import com.github.mcac0006.ravelin.transaction.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sun.deploy.util.StringUtils;
@@ -32,6 +30,29 @@ import java.util.List;
  * @author <a href="matthew.cachia@gmail.com">matthew.cachia</a>
  */
 public class RavelinEventTest {
+
+    @Test
+    public void transactionEventTest() throws Exception {
+
+        final TransactionEvent generatedEvent;
+        {
+            AVSResult avsResult = new AVSResult(VerificationResult.M, VerificationResult.A);
+            VerificationResult cvvResultCode = VerificationResult.M;
+            Transaction transaction = new Transaction("f61f8594e06459fa046707c36159bb35", true, "james.tate@gmail.com", "GBP", 4675, 0, "1000", null, "stripe", "tr_16oaY72eZvKYlo2CE5ZDq9Vh", avsResult, cvvResultCode, TransactionType.AUTH_CAPTURE, null);
+            generatedEvent = new TransactionEvent(1429029735, "61283761287361", null, null, "783917", "n1QSYK0ceGNZqU28ien3", transaction, null, null);
+        }
+
+        final TransactionEvent expectedEvent;
+        {
+            final List list = FileUtils.readLines(new File("target/test-classes/transactionevent.json"));
+            final String content = StringUtils.join(list, "");
+
+            Gson gson = new GsonBuilder().registerTypeAdapter(TransactionType.class, new TransactionType.TransactionTypeHandler()).create();
+            expectedEvent = gson.fromJson(content, TransactionEvent.class);
+        }
+
+        Assert.assertEquals(expectedEvent, generatedEvent);
+    }
 
     @Test
     public void preTransactionEventTest() throws Exception {
