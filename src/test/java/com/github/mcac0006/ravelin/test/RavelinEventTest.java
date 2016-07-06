@@ -18,9 +18,9 @@ import com.github.mcac0006.ravelin.paymentmethodevent.PaymentMethodEvent;
 import com.github.mcac0006.ravelin.transaction.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.sun.deploy.util.StringUtils;
 import junit.framework.Assert;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 import java.io.File;
@@ -44,8 +44,8 @@ public class RavelinEventTest {
 
         final TransactionEvent expectedEvent;
         {
-            final List list = FileUtils.readLines(new File("target/test-classes/transactionevent.json"));
-            final String content = StringUtils.join(list, "");
+            final List list = FileUtils.readLines(new File("target/test-classes/transactionEvent.json"));
+            final String content = StringUtils.join(list.iterator(), "");
 
             Gson gson = new GsonBuilder().registerTypeAdapter(TransactionType.class, new TransactionType.TransactionTypeHandler()).create();
             expectedEvent = gson.fromJson(content, TransactionEvent.class);
@@ -67,7 +67,7 @@ public class RavelinEventTest {
         final PreTransactionEvent expectedEvent;
         {
             final List list = FileUtils.readLines(new File("target/test-classes/preTransactionEvent.json"));
-            final String content = StringUtils.join(list, "");
+            final String content = StringUtils.join(list.iterator(), "");
 
             Gson gson = new GsonBuilder().registerTypeAdapter(TransactionType.class, new TransactionType.TransactionTypeHandler()).create();
             expectedEvent = gson.fromJson(content, PreTransactionEvent.class);
@@ -88,7 +88,7 @@ public class RavelinEventTest {
         final LabelCustomerEvent expectedEvent;
         {
             final List list = FileUtils.readLines(new File("target/test-classes/labelCustomerEvent.json"));
-            final String content = StringUtils.join(list, "");
+            final String content = StringUtils.join(list.iterator(), "");
 
             Gson gson = new Gson();
             expectedEvent = gson.fromJson(content, LabelCustomerEvent.class);
@@ -108,7 +108,7 @@ public class RavelinEventTest {
         final LoginEvent expectedEvent;
         {
             final List list = FileUtils.readLines(new File("target/test-classes/loginEvent.json"));
-            final String content = StringUtils.join(list, "");
+            final String content = StringUtils.join(list.iterator(), "");
 
             Gson gson = new Gson();
             expectedEvent = gson.fromJson(content, LoginEvent.class);
@@ -137,7 +137,7 @@ public class RavelinEventTest {
         final OrderEvent expectedEvent;
         {
             final List list = FileUtils.readLines(new File("target/test-classes/orderEvent.json"));
-            final String content = StringUtils.join(list, "");
+            final String content = StringUtils.join(list.iterator(), "");
 
             Gson gson = new GsonBuilder().registerTypeAdapter(PaymentMethod.class, new PaymentMethodDeserializer()).create();
             expectedEvent = gson.fromJson(content, OrderEvent.class);
@@ -173,7 +173,7 @@ public class RavelinEventTest {
         final PaymentMethodEvent expectedEvent;
         {
             final List list = FileUtils.readLines(new File("target/test-classes/paymentMethodEvent.json"));
-            final String content = StringUtils.join(list, "");
+            final String content = StringUtils.join(list.iterator(), "");
 
             Gson gson = new GsonBuilder().registerTypeAdapter(PaymentMethod.class, new PaymentMethodDeserializer()).create();
             expectedEvent = gson.fromJson(content, PaymentMethodEvent.class);
@@ -212,7 +212,7 @@ public class RavelinEventTest {
         }
 
         final List list = FileUtils.readLines(new File("target/test-classes/customerevent.json"));
-        final String content = StringUtils.join(list, "");
+        final String content = StringUtils.join(list.iterator(), "");
 
         Gson gson = new Gson();
         final CustomerEvent expectedEvent = gson.fromJson(content, CustomerEvent.class);

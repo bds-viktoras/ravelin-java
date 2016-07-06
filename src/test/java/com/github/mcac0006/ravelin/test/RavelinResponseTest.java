@@ -3,9 +3,10 @@ package com.github.mcac0006.ravelin.test;
 import com.github.mcac0006.ravelin.response.Action;
 import com.github.mcac0006.ravelin.response.RavelinResponse;
 import com.google.gson.Gson;
-import com.sun.deploy.util.StringUtils;
+
 import junit.framework.Assert;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.junit.Test;
 
 import java.io.File;
@@ -24,7 +25,7 @@ public class RavelinResponseTest {
         {
             {
                 final List list = FileUtils.readLines(new File("target/test-classes/response.json"));
-                final String content = StringUtils.join(list, "");
+                final String content = StringUtils.join(list.iterator(), "");
 
                 Gson gson = new Gson();
                 generatedResponse = gson.fromJson(content, RavelinResponse.class);
