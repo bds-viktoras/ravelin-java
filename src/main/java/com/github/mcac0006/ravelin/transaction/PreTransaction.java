@@ -66,8 +66,7 @@ public class PreTransaction {
                           Integer credit,
                           String gateway,
                           TransactionType type,
-                          Integer time,
-                          Map<String, Object> custom) {
+                          Integer time) {
         super();
         setTransactionId(transactionId);
         setEmail(email);
@@ -77,7 +76,7 @@ public class PreTransaction {
         setGateway(gateway);
         setType(type);
         setTime(time);
-        this.custom = new HashMap<String, Object>();
+        this.custom = null;
     }
 
 

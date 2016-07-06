@@ -15,6 +15,9 @@ import com.github.mcac0006.ravelin.label.Reviewer;
 import com.github.mcac0006.ravelin.login.LoginEvent;
 import com.github.mcac0006.ravelin.order.*;
 import com.github.mcac0006.ravelin.paymentmethodevent.PaymentMethodEvent;
+import com.github.mcac0006.ravelin.transaction.PreTransaction;
+import com.github.mcac0006.ravelin.transaction.PreTransactionEvent;
+import com.github.mcac0006.ravelin.transaction.TransactionType;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sun.deploy.util.StringUtils;
@@ -29,6 +32,28 @@ import java.util.List;
  * @author <a href="matthew.cachia@gmail.com">matthew.cachia</a>
  */
 public class RavelinEventTest {
+
+    @Test
+    public void preTransactionEventTest() throws Exception {
+
+        final PreTransactionEvent generatedEvent;
+        {
+
+            final PreTransaction preTransaction = new PreTransaction("f61f8594e06459fa046707c36159bb35", "james.tate@gmail.com", "GBP", 4675, 0, null, TransactionType.AUTH, null);
+            generatedEvent = new PreTransactionEvent(1429029735, "61283761287361", null, null, "783917", "n1QSYK0ceGNZqU28ien3", preTransaction, null, null);
+        }
+
+        final PreTransactionEvent expectedEvent;
+        {
+            final List list = FileUtils.readLines(new File("target/test-classes/preTransactionEvent.json"));
+            final String content = StringUtils.join(list, "");
+
+            Gson gson = new GsonBuilder().registerTypeAdapter(TransactionType.class, new TransactionType.TransactionTypeHandler()).create();
+            expectedEvent = gson.fromJson(content, PreTransactionEvent.class);
+        }
+
+        Assert.assertEquals(expectedEvent, generatedEvent);
+    }
 
     @Test
     public void labelCustomerEventTest() throws Exception {

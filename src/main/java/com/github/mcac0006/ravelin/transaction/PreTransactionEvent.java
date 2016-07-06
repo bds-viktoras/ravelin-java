@@ -55,7 +55,7 @@ public class PreTransactionEvent extends Event {
     /**
      * The transaction that is about to be committed.
      */
-    private PreTransaction preTransaction;
+    private PreTransaction transaction;
 
     /**
      * (optional) Information about the device used by this customer. Mutually exclusive with the
@@ -77,7 +77,7 @@ public class PreTransactionEvent extends Event {
                                PaymentMethod paymentMethod,
                                String paymentMethodId,
                                String orderId,
-                               PreTransaction preTransaction,
+                               PreTransaction transaction,
                                Device device,
                                String deviceId) {
         super(timestamp);
@@ -86,7 +86,7 @@ public class PreTransactionEvent extends Event {
         this.paymentMethod = paymentMethod;
         this.paymentMethodId = paymentMethodId;
         this.orderId = orderId;
-        this.preTransaction = preTransaction;
+        this.transaction = transaction;
         this.device = device;
         this.deviceId = deviceId;
     }
@@ -152,15 +152,15 @@ public class PreTransactionEvent extends Event {
     }
 
 
-    public PreTransaction getPreTransaction() {
+    public PreTransaction getTransaction() {
 
-        return preTransaction;
+        return transaction;
     }
 
 
-    public void setPreTransaction(PreTransaction preTransaction) {
+    public void setTransaction(PreTransaction transaction) {
 
-        this.preTransaction = preTransaction;
+        this.transaction = transaction;
     }
 
 
@@ -204,7 +204,7 @@ public class PreTransactionEvent extends Event {
         if (getPaymentMethodId() != null ? !getPaymentMethodId().equals(that.getPaymentMethodId()) : that.getPaymentMethodId() != null)
             return false;
         if (getOrderId() != null ? !getOrderId().equals(that.getOrderId()) : that.getOrderId() != null) return false;
-        if (getPreTransaction() != null ? !getPreTransaction().equals(that.getPreTransaction()) : that.getPreTransaction() != null)
+        if (getTransaction() != null ? !getTransaction().equals(that.getTransaction()) : that.getTransaction() != null)
             return false;
         if (getDevice() != null ? !getDevice().equals(that.getDevice()) : that.getDevice() != null) return false;
         return getDeviceId() != null ? getDeviceId().equals(that.getDeviceId()) : that.getDeviceId() == null;
@@ -219,7 +219,7 @@ public class PreTransactionEvent extends Event {
         result = 31 * result + (getPaymentMethod() != null ? getPaymentMethod().hashCode() : 0);
         result = 31 * result + (getPaymentMethodId() != null ? getPaymentMethodId().hashCode() : 0);
         result = 31 * result + (getOrderId() != null ? getOrderId().hashCode() : 0);
-        result = 31 * result + (getPreTransaction() != null ? getPreTransaction().hashCode() : 0);
+        result = 31 * result + (getTransaction() != null ? getTransaction().hashCode() : 0);
         result = 31 * result + (getDevice() != null ? getDevice().hashCode() : 0);
         result = 31 * result + (getDeviceId() != null ? getDeviceId().hashCode() : 0);
         return result;
@@ -233,7 +233,7 @@ public class PreTransactionEvent extends Event {
                 ", paymentMethod=" + paymentMethod +
                 ", paymentMethodId='" + paymentMethodId + '\'' +
                 ", orderId='" + orderId + '\'' +
-                ", preTransaction=" + preTransaction +
+                ", transaction=" + transaction +
                 ", device=" + device +
                 ", deviceId='" + deviceId + '\'' +
                 '}';
