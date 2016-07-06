@@ -27,8 +27,7 @@ public class RavelinResponseTest {
                 final List list = FileUtils.readLines(new File("target/test-classes/response.json"));
                 final String content = StringUtils.join(list.iterator(), "");
 
-                Gson gson = new Gson();
-                generatedResponse = gson.fromJson(content, RavelinResponse.class);
+                generatedResponse = RavelinResponse.parse(content);
             }
         }
 

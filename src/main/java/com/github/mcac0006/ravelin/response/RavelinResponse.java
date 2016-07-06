@@ -4,6 +4,8 @@
 package com.github.mcac0006.ravelin.response;
 
 
+import com.google.gson.Gson;
+
 /**
  * @author <a href="matthew.cachia@gmail.com">matthew.cachia</a>
  *
@@ -121,6 +123,12 @@ public class RavelinResponse {
     public void setComment(String comment) {
 
         this.comment = comment;
+    }
+
+    public static RavelinResponse parse(String content) {
+
+        Gson gson = new Gson();
+        return gson.fromJson(content, RavelinResponse.class);
     }
 
     @Override public String toString() {

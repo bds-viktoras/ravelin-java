@@ -9,6 +9,8 @@ import java.lang.reflect.Type;
 import java.util.Arrays;
 import java.util.Optional;
 
+import static java.lang.String.format;
+
 /**
  * 
  * @author <a href="matthew.cachia@gmail.com">matthew.cachia</a>
@@ -33,15 +35,16 @@ public enum TransactionType {
     /**
      * @param code
      * @return
-     * @throws IllegalArgumentException - if the specified enum type has no constant with the specified name, or the specified class object does not represent an enum type.
+     * @throws NullPointerException     if {@code code} is null.
      */
     public static TransactionType resolve(String code) throws IllegalArgumentException {
 
-        Optional<TransactionType> first = Arrays.asList(values()).stream().filter(tt -> tt.code.equals(code)).findFirst();
-        if (first.isPresent())
-            return first.get();
-        else
-            throw new IllegalArgumentException();
+        for (TransactionType type : values()) {
+            if (type.code.equals(code))
+                return type;
+        }
+
+        throw new IllegalArgumentException(format("Cannot find error code for the specified code [%s].", code));
     }
 
     public static class TransactionTypeHandler implements JsonSerializer<TransactionType>, JsonDeserializer<TransactionType> {
