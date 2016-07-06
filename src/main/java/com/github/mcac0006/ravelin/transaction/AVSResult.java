@@ -49,6 +49,31 @@ public class AVSResult {
     
         this.street = street;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "AVSResult{" +
+                "postalCode=" + postalCode +
+                ", street=" + street +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AVSResult avsResult = (AVSResult) o;
+
+        if (getPostalCode() != avsResult.getPostalCode()) return false;
+        return getStreet() == avsResult.getStreet();
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getPostalCode() != null ? getPostalCode().hashCode() : 0;
+        result = 31 * result + (getStreet() != null ? getStreet().hashCode() : 0);
+        return result;
+    }
 }

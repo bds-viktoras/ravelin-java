@@ -292,16 +292,83 @@ public class Transaction {
     }
 
 
-    public void setCustom(Map<String, Object> custom) {
-
-        this.custom = custom;
-    }
-
     public void addToCustom(String key, Object val) {
 
         if (getCustom() == null)
-            setCustom(new HashMap<String, Object>());
+            this.custom = new HashMap<String, Object>();
 
         getCustom().put(key, val);
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "transactionId='" + transactionId + '\'' +
+                ", success=" + success +
+                ", email='" + email + '\'' +
+                ", currency='" + currency + '\'' +
+                ", debit=" + debit +
+                ", credit=" + credit +
+                ", authCode='" + authCode + '\'' +
+                ", declineCode='" + declineCode + '\'' +
+                ", gateway='" + gateway + '\'' +
+                ", gatewayReference='" + gatewayReference + '\'' +
+                ", avsResultCode=" + avsResultCode +
+                ", cvvResultCode=" + cvvResultCode +
+                ", type=" + type +
+                ", time=" + time +
+                ", custom=" + custom +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Transaction that = (Transaction) o;
+
+        if (getTransactionId() != null ? !getTransactionId().equals(that.getTransactionId()) : that.getTransactionId() != null)
+            return false;
+        if (getSuccess() != null ? !getSuccess().equals(that.getSuccess()) : that.getSuccess() != null) return false;
+        if (getEmail() != null ? !getEmail().equals(that.getEmail()) : that.getEmail() != null) return false;
+        if (getCurrency() != null ? !getCurrency().equals(that.getCurrency()) : that.getCurrency() != null)
+            return false;
+        if (getDebit() != null ? !getDebit().equals(that.getDebit()) : that.getDebit() != null) return false;
+        if (getCredit() != null ? !getCredit().equals(that.getCredit()) : that.getCredit() != null) return false;
+        if (getAuthCode() != null ? !getAuthCode().equals(that.getAuthCode()) : that.getAuthCode() != null)
+            return false;
+        if (getDeclineCode() != null ? !getDeclineCode().equals(that.getDeclineCode()) : that.getDeclineCode() != null)
+            return false;
+        if (getGateway() != null ? !getGateway().equals(that.getGateway()) : that.getGateway() != null) return false;
+        if (getGatewayReference() != null ? !getGatewayReference().equals(that.getGatewayReference()) : that.getGatewayReference() != null)
+            return false;
+        if (getAvsResultCode() != null ? !getAvsResultCode().equals(that.getAvsResultCode()) : that.getAvsResultCode() != null)
+            return false;
+        if (getCvvResultCode() != that.getCvvResultCode()) return false;
+        if (getType() != that.getType()) return false;
+        if (getTime() != null ? !getTime().equals(that.getTime()) : that.getTime() != null) return false;
+        return getCustom() != null ? getCustom().equals(that.getCustom()) : that.getCustom() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getTransactionId() != null ? getTransactionId().hashCode() : 0;
+        result = 31 * result + (getSuccess() != null ? getSuccess().hashCode() : 0);
+        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+        result = 31 * result + (getCurrency() != null ? getCurrency().hashCode() : 0);
+        result = 31 * result + (getDebit() != null ? getDebit().hashCode() : 0);
+        result = 31 * result + (getCredit() != null ? getCredit().hashCode() : 0);
+        result = 31 * result + (getAuthCode() != null ? getAuthCode().hashCode() : 0);
+        result = 31 * result + (getDeclineCode() != null ? getDeclineCode().hashCode() : 0);
+        result = 31 * result + (getGateway() != null ? getGateway().hashCode() : 0);
+        result = 31 * result + (getGatewayReference() != null ? getGatewayReference().hashCode() : 0);
+        result = 31 * result + (getAvsResultCode() != null ? getAvsResultCode().hashCode() : 0);
+        result = 31 * result + (getCvvResultCode() != null ? getCvvResultCode().hashCode() : 0);
+        result = 31 * result + (getType() != null ? getType().hashCode() : 0);
+        result = 31 * result + (getTime() != null ? getTime().hashCode() : 0);
+        result = 31 * result + (getCustom() != null ? getCustom().hashCode() : 0);
+        return result;
     }
 }

@@ -182,9 +182,61 @@ public class PreTransaction {
         return custom;
     }
 
+    public void addToCustom(String key, Object value) {
 
-    public void setCustom(Map<String, Object> custom) {
+        if (getCustom() == null)
+            this.custom = new HashMap<String, Object>();
 
-        this.custom = custom;
+        getCustom().put(key, value);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PreTransaction that = (PreTransaction) o;
+
+        if (getTransactionId() != null ? !getTransactionId().equals(that.getTransactionId()) : that.getTransactionId() != null)
+            return false;
+        if (getEmail() != null ? !getEmail().equals(that.getEmail()) : that.getEmail() != null) return false;
+        if (getCurrency() != null ? !getCurrency().equals(that.getCurrency()) : that.getCurrency() != null)
+            return false;
+        if (getDebit() != null ? !getDebit().equals(that.getDebit()) : that.getDebit() != null) return false;
+        if (getCredit() != null ? !getCredit().equals(that.getCredit()) : that.getCredit() != null) return false;
+        if (getGateway() != null ? !getGateway().equals(that.getGateway()) : that.getGateway() != null) return false;
+        if (getType() != that.getType()) return false;
+        if (getTime() != null ? !getTime().equals(that.getTime()) : that.getTime() != null) return false;
+        return getCustom() != null ? getCustom().equals(that.getCustom()) : that.getCustom() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getTransactionId() != null ? getTransactionId().hashCode() : 0;
+        result = 31 * result + (getEmail() != null ? getEmail().hashCode() : 0);
+        result = 31 * result + (getCurrency() != null ? getCurrency().hashCode() : 0);
+        result = 31 * result + (getDebit() != null ? getDebit().hashCode() : 0);
+        result = 31 * result + (getCredit() != null ? getCredit().hashCode() : 0);
+        result = 31 * result + (getGateway() != null ? getGateway().hashCode() : 0);
+        result = 31 * result + (getType() != null ? getType().hashCode() : 0);
+        result = 31 * result + (getTime() != null ? getTime().hashCode() : 0);
+        result = 31 * result + (getCustom() != null ? getCustom().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "PreTransaction{" +
+                "transactionId='" + transactionId + '\'' +
+                ", email='" + email + '\'' +
+                ", currency='" + currency + '\'' +
+                ", debit=" + debit +
+                ", credit=" + credit +
+                ", gateway='" + gateway + '\'' +
+                ", type=" + type +
+                ", time=" + time +
+                ", custom=" + custom +
+                '}';
     }
 }

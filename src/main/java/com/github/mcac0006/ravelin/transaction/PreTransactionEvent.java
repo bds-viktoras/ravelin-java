@@ -14,10 +14,10 @@ import com.github.mcac0006.ravelin.base.paymentmethod.PaymentMethod;
  * usually fulfils an order, but not always (e.g. outstanding credit, or split payments).
  * 
  * If a transaction event call is intended to get a fraud indication before the transaction is
- * placed with the PSP, some of the transaction properties won’t be available.
+ * placed with the PSP, some of the transaction properties wonï¿½t be available.
  * 
  * In that case, tThis event carries all the information you have available just as a user clicked
- * the “buy” button, but before you’ve passed it through to the PSP.
+ * the ï¿½buyï¿½ button, but before youï¿½ve passed it through to the PSP.
  * 
  * @author <a href="matthew.cachia@gmail.com">matthew.cachia</a>
  *
@@ -187,5 +187,55 @@ public class PreTransactionEvent extends Event {
         this.deviceId = deviceId;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
 
+        PreTransactionEvent that = (PreTransactionEvent) o;
+
+        if (getCustomerId() != null ? !getCustomerId().equals(that.getCustomerId()) : that.getCustomerId() != null)
+            return false;
+        if (getTempCustomerId() != null ? !getTempCustomerId().equals(that.getTempCustomerId()) : that.getTempCustomerId() != null)
+            return false;
+        if (getPaymentMethod() != null ? !getPaymentMethod().equals(that.getPaymentMethod()) : that.getPaymentMethod() != null)
+            return false;
+        if (getPaymentMethodId() != null ? !getPaymentMethodId().equals(that.getPaymentMethodId()) : that.getPaymentMethodId() != null)
+            return false;
+        if (getOrderId() != null ? !getOrderId().equals(that.getOrderId()) : that.getOrderId() != null) return false;
+        if (getPreTransaction() != null ? !getPreTransaction().equals(that.getPreTransaction()) : that.getPreTransaction() != null)
+            return false;
+        if (getDevice() != null ? !getDevice().equals(that.getDevice()) : that.getDevice() != null) return false;
+        return getDeviceId() != null ? getDeviceId().equals(that.getDeviceId()) : that.getDeviceId() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (getCustomerId() != null ? getCustomerId().hashCode() : 0);
+        result = 31 * result + (getTempCustomerId() != null ? getTempCustomerId().hashCode() : 0);
+        result = 31 * result + (getPaymentMethod() != null ? getPaymentMethod().hashCode() : 0);
+        result = 31 * result + (getPaymentMethodId() != null ? getPaymentMethodId().hashCode() : 0);
+        result = 31 * result + (getOrderId() != null ? getOrderId().hashCode() : 0);
+        result = 31 * result + (getPreTransaction() != null ? getPreTransaction().hashCode() : 0);
+        result = 31 * result + (getDevice() != null ? getDevice().hashCode() : 0);
+        result = 31 * result + (getDeviceId() != null ? getDeviceId().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "PreTransactionEvent{" +
+                "customerId='" + customerId + '\'' +
+                ", tempCustomerId='" + tempCustomerId + '\'' +
+                ", paymentMethod=" + paymentMethod +
+                ", paymentMethodId='" + paymentMethodId + '\'' +
+                ", orderId='" + orderId + '\'' +
+                ", preTransaction=" + preTransaction +
+                ", device=" + device +
+                ", deviceId='" + deviceId + '\'' +
+                '}';
+    }
 }

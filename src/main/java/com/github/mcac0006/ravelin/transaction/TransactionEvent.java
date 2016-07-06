@@ -177,4 +177,56 @@ public class TransactionEvent extends Event {
 
         this.deviceId = deviceId;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        TransactionEvent that = (TransactionEvent) o;
+
+        if (getCustomerId() != null ? !getCustomerId().equals(that.getCustomerId()) : that.getCustomerId() != null)
+            return false;
+        if (getTempCustomerId() != null ? !getTempCustomerId().equals(that.getTempCustomerId()) : that.getTempCustomerId() != null)
+            return false;
+        if (getPaymentMethod() != null ? !getPaymentMethod().equals(that.getPaymentMethod()) : that.getPaymentMethod() != null)
+            return false;
+        if (getPaymentMethodId() != null ? !getPaymentMethodId().equals(that.getPaymentMethodId()) : that.getPaymentMethodId() != null)
+            return false;
+        if (getOrderId() != null ? !getOrderId().equals(that.getOrderId()) : that.getOrderId() != null) return false;
+        if (getTransaction() != null ? !getTransaction().equals(that.getTransaction()) : that.getTransaction() != null)
+            return false;
+        if (getDevice() != null ? !getDevice().equals(that.getDevice()) : that.getDevice() != null) return false;
+        return getDeviceId() != null ? getDeviceId().equals(that.getDeviceId()) : that.getDeviceId() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (getCustomerId() != null ? getCustomerId().hashCode() : 0);
+        result = 31 * result + (getTempCustomerId() != null ? getTempCustomerId().hashCode() : 0);
+        result = 31 * result + (getPaymentMethod() != null ? getPaymentMethod().hashCode() : 0);
+        result = 31 * result + (getPaymentMethodId() != null ? getPaymentMethodId().hashCode() : 0);
+        result = 31 * result + (getOrderId() != null ? getOrderId().hashCode() : 0);
+        result = 31 * result + (getTransaction() != null ? getTransaction().hashCode() : 0);
+        result = 31 * result + (getDevice() != null ? getDevice().hashCode() : 0);
+        result = 31 * result + (getDeviceId() != null ? getDeviceId().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "TransactionEvent{" +
+                "customerId='" + customerId + '\'' +
+                ", tempCustomerId='" + tempCustomerId + '\'' +
+                ", paymentMethod=" + paymentMethod +
+                ", paymentMethodId='" + paymentMethodId + '\'' +
+                ", orderId='" + orderId + '\'' +
+                ", transaction=" + transaction +
+                ", device=" + device +
+                ", deviceId='" + deviceId + '\'' +
+                '}';
+    }
 }

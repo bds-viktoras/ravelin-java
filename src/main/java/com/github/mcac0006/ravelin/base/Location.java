@@ -106,7 +106,7 @@ public class Location {
         setLatitude(latitude);
         setLongitude(longitude);
         setGeohash(geohash);
-        setCustom(null);
+        this.custom = null;
     }
 
 
@@ -260,15 +260,10 @@ public class Location {
     }
 
 
-    public void setCustom(Map<String, Object> custom) {
-
-        this.custom = custom;
-    }
-
     public void addCustom(String key, Object val) {
 
         if (getCustom() == null)
-            setCustom(new HashMap<String, Object>());
+            this.custom = new HashMap<String, Object>();
 
         getCustom().put(key, val);
     }

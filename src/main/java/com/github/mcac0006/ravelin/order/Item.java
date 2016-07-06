@@ -154,15 +154,10 @@ public class Item {
         return custom;
     }
 
-    public void setCustom(Map<String, Object> custom) {
-
-        this.custom = custom;
-    }
-
     public void addToCustom(String key, Object value) {
 
         if (getCustom() == null)
-            setCustom(new HashMap<String, Object>());
+            this.custom = new HashMap<String, Object>();
 
         getCustom().put(key, value);
     }
