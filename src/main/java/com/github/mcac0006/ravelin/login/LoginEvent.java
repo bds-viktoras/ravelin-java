@@ -84,6 +84,11 @@ public class LoginEvent extends Event {
         this.deviceId = deviceId;
     }
 
+    @Override public String getPath() {
+
+        return "v2/login";
+    }
+
     @Override public boolean equals(Object o) {
 
         if (this == o)

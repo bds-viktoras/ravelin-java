@@ -54,6 +54,11 @@ public class CustomerEvent extends Event {
         this.deviceId = deviceId;
     }
 
+    @Override public String getPath() {
+
+        return "v2/customer";
+    }
+
     @Override public boolean equals(Object o) {
 
         if (this == o)

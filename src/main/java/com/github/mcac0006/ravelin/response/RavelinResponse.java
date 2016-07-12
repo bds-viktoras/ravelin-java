@@ -1,146 +1,86 @@
-/**
- * 
- */
 package com.github.mcac0006.ravelin.response;
-
 
 import com.google.gson.Gson;
 
 /**
- * @author <a href="matthew.cachia@gmail.com">matthew.cachia</a>
- *
+ * Created by matthew.cachia on 11/07/2016.
  */
 public class RavelinResponse {
 
-    /**
-     * Identifier for this customer, as supplied by the client.
-     */
-    private String customerId;
+    private Integer timestamp;
 
-    /**
-     * Action to take for this customer, according to Ravelin.
-     */
-    private Action action;
+    private Integer status;
 
-    /**
-     * Ravelin score for this customer as an integer. Debugging purposes only.
-     */
-    private Integer score;
+    private String message;
 
-    /**
-     * Source of the score, e.g. RAVELIN or MANUAL_REVIEW.
-     */
-    private String source;
+    private String traceId;
 
-    /**
-     * Unique identifier for this score or callback.
-     */
-    private String scoreId;
+    private RavelinScoreResponse data;
 
-    /**
-     * In the case of manual review, this is the comment left by the reviewer on this particular
-     * review action.
-     */
-    private String comment;
+    public RavelinResponse() {}
 
-    public RavelinResponse(String customerId, Action action, Integer score, String source, String scoreId, String comment) {
-        super();
-        this.customerId = customerId;
-        this.action = action;
-        this.score = score;
-        this.source = source;
-        this.scoreId = scoreId;
-        this.comment = comment;
-    }
+    public RavelinResponse(Integer timestamp, Integer status, String message, String traceId, RavelinScoreResponse data) {
 
-
-    public String getCustomerId() {
-
-        return customerId;
-    }
-
-
-    public void setCustomerId(String customerId) {
-
-        this.customerId = customerId;
-    }
-
-
-    public Action getAction() {
-
-        return action;
-    }
-
-
-    public void setAction(Action action) {
-
-        this.action = action;
-    }
-
-
-    public Integer getScore() {
-
-        return score;
-    }
-
-
-    public void setScore(Integer score) {
-
-        this.score = score;
-    }
-
-
-    public String getSource() {
-
-        return source;
-    }
-
-
-    public void setSource(String source) {
-
-        this.source = source;
-    }
-
-
-    public String getScoreId() {
-
-        return scoreId;
-    }
-
-
-    public void setScoreId(String scoreId) {
-
-        this.scoreId = scoreId;
-    }
-
-
-    public String getComment() {
-
-        return comment;
-    }
-
-
-    public void setComment(String comment) {
-
-        this.comment = comment;
+        this.timestamp = timestamp;
+        this.status = status;
+        this.message = message;
+        this.traceId = traceId;
+        this.data = data;
     }
 
     public static RavelinResponse parse(String content) {
 
-        Gson gson = new Gson();
-        return gson.fromJson(content, RavelinResponse.class);
+        return new Gson().fromJson(content, RavelinResponse.class);
     }
 
-    @Override public String toString() {
+    public Integer getTimestamp() {
 
-        return "RavelinResponse{" +
-               "customerId='" + customerId + '\'' +
-               ", action=" + action +
-               ", score=" + score +
-               ", source='" + source + '\'' +
-               ", scoreId='" + scoreId + '\'' +
-               ", comment='" + comment + '\'' +
-               '}';
+        return timestamp;
+    }
+
+    public void setTimestamp(Integer timestamp) {
+
+        this.timestamp = timestamp;
+    }
+
+    public Integer getStatus() {
+
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+
+        this.status = status;
+    }
+
+    public String getMessage() {
+
+        return message;
+    }
+
+    public void setMessage(String message) {
+
+        this.message = message;
+    }
+
+    public String getTraceId() {
+
+        return traceId;
+    }
+
+    public void setTraceId(String traceId) {
+
+        this.traceId = traceId;
+    }
+
+    public RavelinScoreResponse getData() {
+
+        return data;
+    }
+
+    public void setData(RavelinScoreResponse data) {
+
+        this.data = data;
     }
 
     @Override public boolean equals(Object o) {
@@ -152,28 +92,36 @@ public class RavelinResponse {
 
         RavelinResponse that = (RavelinResponse) o;
 
-        if (getCustomerId() != null ? !getCustomerId().equals(that.getCustomerId()) : that.getCustomerId() != null)
+        if (getTimestamp() != null ? !getTimestamp().equals(that.getTimestamp()) : that.getTimestamp() != null)
             return false;
-        if (getAction() != that.getAction())
+        if (getStatus() != null ? !getStatus().equals(that.getStatus()) : that.getStatus() != null)
             return false;
-        if (getScore() != null ? !getScore().equals(that.getScore()) : that.getScore() != null)
+        if (getMessage() != null ? !getMessage().equals(that.getMessage()) : that.getMessage() != null)
             return false;
-        if (getSource() != null ? !getSource().equals(that.getSource()) : that.getSource() != null)
+        if (getTraceId() != null ? !getTraceId().equals(that.getTraceId()) : that.getTraceId() != null)
             return false;
-        if (getScoreId() != null ? !getScoreId().equals(that.getScoreId()) : that.getScoreId() != null)
-            return false;
-        return getComment() != null ? getComment().equals(that.getComment()) : that.getComment() == null;
+        return getData() != null ? getData().equals(that.getData()) : that.getData() == null;
 
     }
 
     @Override public int hashCode() {
 
-        int result = getCustomerId() != null ? getCustomerId().hashCode() : 0;
-        result = 31 * result + (getAction() != null ? getAction().hashCode() : 0);
-        result = 31 * result + (getScore() != null ? getScore().hashCode() : 0);
-        result = 31 * result + (getSource() != null ? getSource().hashCode() : 0);
-        result = 31 * result + (getScoreId() != null ? getScoreId().hashCode() : 0);
-        result = 31 * result + (getComment() != null ? getComment().hashCode() : 0);
+        int result = getTimestamp() != null ? getTimestamp().hashCode() : 0;
+        result = 31 * result + (getStatus() != null ? getStatus().hashCode() : 0);
+        result = 31 * result + (getMessage() != null ? getMessage().hashCode() : 0);
+        result = 31 * result + (getTraceId() != null ? getTraceId().hashCode() : 0);
+        result = 31 * result + (getData() != null ? getData().hashCode() : 0);
         return result;
+    }
+
+    @Override public String toString() {
+
+        return "RavelinResponse{" +
+               "timestamp=" + timestamp +
+               ", status=" + status +
+               ", message='" + message + '\'' +
+               ", traceId='" + traceId + '\'' +
+               ", data=" + data +
+               '}';
     }
 }

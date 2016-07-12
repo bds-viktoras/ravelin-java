@@ -4,6 +4,7 @@
 package com.github.mcac0006.ravelin.label;
 
 import com.github.mcac0006.ravelin.base.Event;
+import com.github.mcac0006.ravelin.base.RavelinRequest;
 
 
 /**
@@ -12,7 +13,7 @@ import com.github.mcac0006.ravelin.base.Event;
  * @author <a href="matthew.cachia@gmail.com">matthew.cachia</a>
  *
  */
-public class LabelCustomerEvent {
+public class LabelCustomerEvent extends RavelinRequest {
 
     /**
      * The unique identifier of this customer in your system.
@@ -41,6 +42,10 @@ public class LabelCustomerEvent {
         this.reviewer = reviewer;
     }
 
+    @Override public String getPath() {
+
+        return "v2/label";
+    }
 
     public String getCustomerId() {
 

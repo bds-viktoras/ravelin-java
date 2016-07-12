@@ -178,6 +178,11 @@ public class TransactionEvent extends Event {
         this.deviceId = deviceId;
     }
 
+    @Override public String getPath() {
+
+        return "v2/transaction";
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

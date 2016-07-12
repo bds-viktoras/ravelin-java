@@ -79,6 +79,11 @@ public class PaymentMethodEvent extends Event {
         this.deviceId = deviceId;
     }
 
+    @Override public String getPath() {
+
+        return "v2/paymentmethod";
+    }
+
     @Override public String toString() {
 
         return "PaymentMethodEvent{" +

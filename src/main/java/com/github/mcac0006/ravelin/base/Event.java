@@ -7,7 +7,7 @@ package com.github.mcac0006.ravelin.base;
  * @author <a href="matthew.cachia@gmail.com">matthew.cachia</a>
  *
  */
-public abstract class Event {
+public abstract class Event extends RavelinRequest {
 
     /**
      * The unix timestamp, in seconds, of when the event occured.

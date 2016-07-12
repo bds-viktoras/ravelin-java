@@ -70,6 +70,10 @@ public class PreTransactionEvent extends Event {
      */
     private String deviceId;
 
+    @Override public String getPath() {
+
+        return "v2/pretransaction";
+    }
 
     public PreTransactionEvent(int timestamp,
                                String customerId,
