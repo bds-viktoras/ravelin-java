@@ -4,7 +4,6 @@
 package com.github.mcac0006.ravelin.base.paymentmethod;
 
 import static java.lang.String.format;
-import java.util.regex.Pattern;
 
 /**
  * @author <a href="matthew.cachia@gmail.com">matthew.cachia</a>
@@ -50,7 +49,7 @@ public class CreditCard extends PaymentMethod {
                       Boolean prepaidCard,
                       String issuer,
                       String countryIssued) {
-        super(paymentMethodId, nickName, banned, active, registrationTime);
+        super(paymentMethodId, "card", nickName, banned, active, registrationTime);
         setInstrumentId(instrumentId);
         setNameOnCard(nameOnCard);
         setCardBin(cardBin);
@@ -196,11 +195,6 @@ public class CreditCard extends PaymentMethod {
         this.countryIssued = countryIssued;
     }
 
-    @Override
-    String getMethodType() {
-        return "card";
-    }
-
     @Override public boolean equals(Object o) {
 
         if (this == o)
@@ -264,6 +258,6 @@ public class CreditCard extends PaymentMethod {
                ", prepaidCard=" + prepaidCard +
                ", issuer='" + issuer + '\'' +
                ", countryIssued='" + countryIssued + '\'' +
-               '}';
+               "} " + super.toString();
     }
 }

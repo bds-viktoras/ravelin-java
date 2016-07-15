@@ -15,7 +15,7 @@ public class PayPal extends PaymentMethod {
     private String email;
 
     public PayPal(String paymentMethodId, String nickName, Boolean banned, Boolean active, Integer registrationTime, Pattern eMAIL_PATTERN, String email) {
-        super(paymentMethodId, nickName, banned, active, registrationTime);
+        super(paymentMethodId, "paypal", nickName, banned, active, registrationTime);
         setEmail(email);
     }
 
@@ -29,12 +29,6 @@ public class PayPal extends PaymentMethod {
     public void setEmail(String email) {
 
         this.email = email;
-    }
-
-    @Override
-    String getMethodType() {
-
-        return "paypal";
     }
 
     @Override public String toString() {
