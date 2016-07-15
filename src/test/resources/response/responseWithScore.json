@@ -1,0 +1,11 @@
+{
+  "status": 200,
+  "timestamp": 1468224262,
+  "data": {
+    "customerId": "61283761287361",
+    "action": "ALLOW",
+    "score": 2,
+    "source": "RAVELIN",
+    "scoreId": "2910e099-b00e-44a7-6e16-a42ddfc7c3ff"
+  }
+}
