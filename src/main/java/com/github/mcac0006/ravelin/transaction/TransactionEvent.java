@@ -3,6 +3,7 @@ package com.github.mcac0006.ravelin.transaction;
 import com.github.mcac0006.ravelin.base.Device;
 import com.github.mcac0006.ravelin.base.Event;
 import com.github.mcac0006.ravelin.base.paymentmethod.PaymentMethod;
+import com.google.gson.GsonBuilder;
 
 
 /**
@@ -181,6 +182,11 @@ public class TransactionEvent extends Event {
     @Override public String getPath() {
 
         return "v2/transaction";
+    }
+
+    @Override protected GsonBuilder gsonInit(GsonBuilder gsonBuilder) {
+
+        return gsonBuilder.registerTypeAdapter(TransactionType.class, new TransactionType.TransactionTypeHandler());
     }
 
     @Override

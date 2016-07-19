@@ -1,5 +1,7 @@
 package com.github.mcac0006.ravelin.base;
 
+import com.google.gson.GsonBuilder;
+
 import static java.lang.String.format;
 
 /**
@@ -13,4 +15,17 @@ public abstract class RavelinRequest {
     }
 
     public abstract String getPath();
+
+    public final String toJSON() {
+
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder = gsonInit(gsonBuilder);
+
+        return gsonBuilder.create().toJson(this);
+    }
+
+    protected GsonBuilder gsonInit(GsonBuilder gsonBuilder) {
+        // default
+        return gsonBuilder;
+    }
 }

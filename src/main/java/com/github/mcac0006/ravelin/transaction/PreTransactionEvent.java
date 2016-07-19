@@ -3,6 +3,8 @@
  */
 package com.github.mcac0006.ravelin.transaction;
 
+import com.google.gson.GsonBuilder;
+
 import com.github.mcac0006.ravelin.base.Device;
 import com.github.mcac0006.ravelin.base.Event;
 import com.github.mcac0006.ravelin.base.paymentmethod.PaymentMethod;
@@ -189,6 +191,11 @@ public class PreTransactionEvent extends Event {
     public void setDeviceId(String deviceId) {
 
         this.deviceId = deviceId;
+    }
+
+    @Override protected GsonBuilder gsonInit(GsonBuilder gsonBuilder) {
+
+        return gsonBuilder.registerTypeAdapter(TransactionType.class, new TransactionType.TransactionTypeHandler());
     }
 
     @Override
