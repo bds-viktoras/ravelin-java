@@ -74,7 +74,7 @@ public class PreTransactionEvent extends Event {
 
     @Override public String getPath() {
 
-        return "v2/pretransaction";
+        return "pretransaction";
     }
 
     public PreTransactionEvent(int timestamp,

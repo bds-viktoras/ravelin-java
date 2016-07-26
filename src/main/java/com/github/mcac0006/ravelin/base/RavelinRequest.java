@@ -11,7 +11,12 @@ public abstract class RavelinRequest {
 
     public String getURL() {
 
-        return format("https://api.ravelin.com/%s", getPath());
+        return format("https://api.ravelin.com/v2/%s", getPath());
+    }
+
+    public String getBackfillURL() {
+
+        return format("https://api.ravelin.com/v2/backfill/%s", getPath());
     }
 
     public abstract String getPath();

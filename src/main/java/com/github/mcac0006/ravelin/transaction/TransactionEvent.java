@@ -181,7 +181,7 @@ public class TransactionEvent extends Event {
 
     @Override public String getPath() {
 
-        return "v2/transaction";
+        return "transaction";
     }
 
     @Override protected GsonBuilder gsonInit(GsonBuilder gsonBuilder) {

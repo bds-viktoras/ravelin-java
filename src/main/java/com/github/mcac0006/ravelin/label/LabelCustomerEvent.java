@@ -44,7 +44,7 @@ public class LabelCustomerEvent extends RavelinRequest {
 
     @Override public String getPath() {
 
-        return "v2/label";
+        return "label/customer";
     }
 
     public String getCustomerId() {
@@ -92,6 +92,13 @@ public class LabelCustomerEvent extends RavelinRequest {
     public void setReviewer(Reviewer reviewer) {
 
         this.reviewer = reviewer;
+    }
+
+    @Override
+    public String getBackfillURL() {
+
+        // there is no such thing as a backfill URL for labels. Use the normal URL.
+        return getURL();
     }
 
     @Override

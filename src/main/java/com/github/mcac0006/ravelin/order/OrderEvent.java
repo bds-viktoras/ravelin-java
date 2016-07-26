@@ -100,7 +100,7 @@ public class OrderEvent extends Event {
 
     @Override public String getPath() {
 
-        return "v2/order";
+        return "order";
     }
 
     @Override public boolean equals(Object o) {

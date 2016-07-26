@@ -86,7 +86,7 @@ public class LoginEvent extends Event {
 
     @Override public String getPath() {
 
-        return "v2/login";
+        return "login";
     }
 
     @Override public boolean equals(Object o) {

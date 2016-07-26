@@ -7,7 +7,7 @@ import static java.lang.String.format;
  */
 public enum RavelinStatusCode {
 
-    OK(200),
+    OK(200, 204),
     BAD_REQUEST(400),
     UNAUTHORIZED(401),
     FORBIDDEN(403),
@@ -19,14 +19,14 @@ public enum RavelinStatusCode {
     SERVICE_UNAVAILABLE(503),
     SERVICE_TIMEOUT(504);
 
-    private int httpResponseCode;
+    private int[] httpResponseCodes;
 
-    private RavelinStatusCode(int httpResponseCode) {
-        this.httpResponseCode = httpResponseCode;
+    private RavelinStatusCode(int... httpResponseCodes) {
+        this.httpResponseCodes = httpResponseCodes;
     }
 
-    public int getHttpResponseCode() {
-        return httpResponseCode;
+    public int[] getHttpResponseCodes() {
+        return httpResponseCodes;
     }
 
     /**
@@ -37,13 +37,15 @@ public enum RavelinStatusCode {
      * @return the enum constant of the specified http response code
      * @throws IllegalArgumentException if the specified http response code has
      *                                  no constant with the specified name.
-     * @throws NullPointerException     if {@code httpResponseCode} is null.
+     * @throws NullPointerException     if {@code httpResponseCodes} is null.
      */
     public static RavelinStatusCode resolve(int httpResponseCode) {
 
         for (RavelinStatusCode errorCode : values()) {
-            if (errorCode.httpResponseCode == httpResponseCode) {
-                return errorCode;
+            for (int responseCode : errorCode.httpResponseCodes) {
+                if (responseCode == httpResponseCode) {
+                    return errorCode;
+                }
             }
         }
 

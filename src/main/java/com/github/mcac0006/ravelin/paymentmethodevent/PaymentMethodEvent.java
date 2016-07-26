@@ -81,7 +81,7 @@ public class PaymentMethodEvent extends Event {
 
     @Override public String getPath() {
 
-        return "v2/paymentmethod";
+        return "paymentmethod";
     }
 
     @Override public String toString() {
